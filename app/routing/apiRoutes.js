@@ -11,6 +11,17 @@ module.exports = function (app) {
 
     // API POST requests
     app.post("/api/friends", function (req, res) {
-        res.json(friends);
+
+       var chosen = req.params.friends;
+  if (chosen) {
+    console.log(chosen);
+    for (var i = 0; i < friends.length; i++) {
+      if (chosen === friends[i].routeName) {
+        return res.json(friends[i]);
+      }
+    }
+    return res.json(false);
+  }
+  return res.json(friends); 
     });
 };

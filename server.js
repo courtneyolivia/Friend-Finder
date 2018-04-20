@@ -1,23 +1,29 @@
-// Loading dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
+// Load dependencies
+var express = require('express');
+var app = express();
+var path = require('path');
+var bodyParser = require('body-parser');
 
 // Initialize app and establish port
-var app = express();
-var PORT = process.env.PORT || 8889;
+var PORT = process.env.PORT || 8080;
 
-// Sets up middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(bodyParser.text());
-app.use(bodyParser.json({type:''}));
+// Create application/json parser
+var jsonParser = bodyParser.json()
 
-// Import routes
-require('./app/routing/apiRoutes.js')(app);
-require('./app/routing/htmlRoutes.js')(app);
+// Create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-// Listening on port
-app.listen(PORT,function() {
-    console.log("App listening on PORT " + PORT);
-}
+// Parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: 'application/*+json' }))
+
+// Parse some custom thing into the Buffer
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+
+// Parse an HTML body into a string
+app.use(bodyParser.text({ type: 'text/html' }))
+
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+});
+
+
