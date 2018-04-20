@@ -6,7 +6,7 @@ Friend-finder is a compatibility-based "FriendFinder" application -- basically a
 <b><h2>Technologies Used</b></h2>
 <ul>
   <li>Node.js</li>
-<li>body-parser NPM Package - https://www.npmjs.com/package/inquirer</li>
+<li>body-parser NPM Package - https://www.npmjs.com/package/body-parser</li>
 <li>express NPM Package - https://www.npmjs.com/package/express</li>
 <li>path NPM Package - https://www.npmjs.com/package/path</li>
 </ul>
